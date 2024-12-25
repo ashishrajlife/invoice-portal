@@ -2,7 +2,7 @@
   <v-app>
     <!-- Sidebar (Left Drawer) -->
     <v-navigation-drawer app>
-  <!-- <v-img src="../assets/images/Cnlogo.png" style="width: 209px; -->
+  <v-img src="../assets/images/Cnlogo.png" style="width: 209px;
 height: 117px;
 gap: 0px;
 opacity: 0px;
