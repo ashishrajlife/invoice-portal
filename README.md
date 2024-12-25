@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # userapplication
 
 ## Project setup
@@ -22,3 +23,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# invoice-portal
+>>>>>>> 6e46c390b680a07c234fa12a97be9e0f5837b541
