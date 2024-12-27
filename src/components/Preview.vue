@@ -21,7 +21,7 @@
         <div>Address: <strong>{{ invoiceData.address }}</strong></div>
       </v-col>
       <v-col cols="12" md="6" class="text-right">
-        <h2 class="text-h6">Company Name</h2>
+        <h2 class="text-h6">{{ invoiceData.companyName }}</h2>
         <div>Mobile: <strong>{{ invoiceData.companymobilenumber }}</strong></div>
         <div>Email: <strong>{{ invoiceData.companyemail }}</strong></div>
         <div>GSTIN: <strong>{{ invoiceData.gstnumber }}</strong></div>
@@ -85,22 +85,6 @@ export default {
     calculateTotal(item) {
       return item.rate * item.quantity - item.discount;
     },
-    // saveInvoice() {
-    //   // Log the invoice data to ensure it's correct
-    //   console.log('Invoice Data:', this.invoiceData);
-    //   console.log('Transaction Data:', this.transactionData);
-
-    //   // If data is valid, save the invoice
-    //   if (this.invoiceData && this.transactionData.length > 0) {
-    //     this.$store.dispatch('saveInvoice', {
-    //       invoiceData: this.invoiceData,
-    //       transactionData: this.transactionData
-    //     });
-    //   } else {
-    //     alert('Invalid data!');
-    //   }
-    // },
-
     saveInvoice() {
       console.log('save invoice')
     // Dispatch action to save invoice and transaction data

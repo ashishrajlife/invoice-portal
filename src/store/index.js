@@ -43,8 +43,8 @@ export default createStore({
       try {
         // Prepare invoice data to save
         const dataToSave = {
-          invoiceData,
-          transactionData
+        invoiceData,
+        transactionData
         };
 
         // Make the Axios request to save the data

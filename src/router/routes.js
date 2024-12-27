@@ -4,6 +4,7 @@ import Dashboard from '../components/Dashboard.vue';
 import addinvoice from '@/components/addinvoice.vue';
 import TransactionDetails from '@/components/TransactionDetails.vue';
 import Preview from '@/components/Preview.vue';
+import editinvoice from '@/components/editinvoice.vue'
 
 const routes = [
   {
@@ -37,6 +38,12 @@ const routes = [
     name: 'preview',
     component: Preview,
   },
+  {
+    path: '/editinvoice',
+    name: 'editinvoice',
+    component: editinvoice,
+  },
+
   
 ];
 

@@ -16,7 +16,7 @@
       </v-card-text>
 
       <v-card-actions class="justify-center">
-        <v-btn color="primary" :disabled="!valid" @click="loginUser">Login</v-btn>
+        <v-btn color="primary" @click="loginUser">Login</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
