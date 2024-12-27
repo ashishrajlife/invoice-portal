@@ -2,10 +2,10 @@
   <AppDrawer />
 
   <v-row class="page-header" style="display: flex; align-items: center; justify-content: flex-start;">
-   <v-col cols="1"> <v-img  src="../../src/assets/images/back.png" alt="back" @click="goBack" style="height: 24px; cursor: pointer;" /> </v-col>
+    <v-col cols="1"> <v-img src="../../src/assets/images/back.png" alt="back" @click="goBack" style="height: 24px; cursor: pointer;" /> </v-col>
     <v-col>
-     <span class="page-heading"> Add New Invoice </span> 
-     </v-col>
+      <span class="page-heading"> Add New Invoice </span> 
+    </v-col>
   </v-row>
 
   <v-row>
@@ -22,35 +22,38 @@
         </v-col>
         <v-col cols="8">
           <span class="text-page">Company Name</span>
-          <v-text-field label="Enter Name" v-model="companyName" :class="{'error-border': !isvalid}" />
+          <v-text-field label="Enter Name" v-model="companyName" class="input-custom-form" :class="{'error-border': !isValid.companyName}" />
+          <div v-if="!isValid.companyName" class="error-message">Company Name is required.</div>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col cols="4">
-         <span class="text-page"> Mobile No. </span>
-          <v-text-field label="Enter Mobile No" v-model="companymobilenumber" />
+          <span class="text-page"> Mobile No. </span>
+          <v-text-field label="Enter Mobile No" v-model="companymobilenumber" :class="{'error-border': !isValid.companymobilenumber}" />
+          <div v-if="!isValid.companymobilenumber" class="error-message">Mobile number should be 10 digits.</div>
         </v-col>
 
         <v-col cols="4">
           <span class="text-page"> Email </span>
-          <v-text-field label="Email" v-model="companyemail" />
+          <v-text-field label="Email" v-model="companyemail" :class="{'error-border': !isValid.companyemail}" />
+          <div v-if="!isValid.companyemail" class="error-message">Email is required.</div>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col cols="4">
-          <span class="text-page">  GSTIN </span>
-          <v-text-field label="GST Number" v-model="gstnumber" />
+          <span class="text-page"> GSTIN </span>
+          <v-text-field label="GST Number" v-model="gstnumber" :class="{'error-border': !isValid.gstnumber}" />
+          <div v-if="!isValid.gstnumber" class="error-message">GSTIN is required.</div>
         </v-col>
 
         <v-col cols="12">
-          <span class="text-page">  Company Address </span>
-          <v-text-field label="Company Address" v-model="companyaddress" />
+          <span class="text-page"> Company Address </span>
+          <v-text-field label="Company Address" v-model="companyaddress" :class="{'error-border': !isValid.companyaddress}" />
+          <div v-if="!isValid.companyaddress" class="error-message">Company address is required.</div>
         </v-col>
-
       </v-row>
-
     </v-form>
 
     <v-row style="padding: 20px;">
@@ -59,35 +62,35 @@
       </v-col>
 
       <v-col cols="4">
-        <span class="text-page">  Date </span>
-     <v-text-field v-model="paymentDate" label="Select Date" readonly @click="dialog = true"></v-text-field>
-    <v-dialog v-model="dialog" persistent max-width="290px">
-      <v-date-picker v-model="paymentDate" @click="dialog = false"></v-date-picker>
-    </v-dialog>
-  </v-col>
-
+        <span class="text-page"> Date </span>
+        <v-text-field v-model="paymentDate" label="Select Date" readonly @click="dialog = true" :class="{'error-border': !isValid.paymentDate}" />
+        <div v-if="!isValid.paymentDate" class="error-message">Date is required.</div>
+        <v-dialog v-model="dialog" persistent max-width="290px">
+          <v-date-picker v-model="paymentDate" @click="dialog = false"></v-date-picker>
+        </v-dialog>
+      </v-col>
 
     </v-row>
-
 
     <v-row>
       <v-col cols="8">
-        <span class="text-page">  Name </span>
-        <v-text-field label="Name" v-model="name" outlined />
+        <span class="text-page"> Name </span>
+        <v-text-field label="Name" v-model="name" outlined :class="{'error-border': !isValid.name}" />
+        <div v-if="!isValid.name" class="error-message">Name is required.</div>
       </v-col>
     </v-row>
 
-
     <v-row>
       <v-col cols="4">
-        <span class="text-page">  Mobile No </span>
-        <v-text-field label="mobile number" v-model="mobilenumber"/>
+        <span class="text-page"> Mobile No </span>
+        <v-text-field label="mobile number" v-model="mobilenumber" :class="{'error-border': !isValid.mobilenumber}"/>
+        <div v-if="!isValid.mobilenumber" class="error-message">Mobile number is required.</div>
       </v-col>
 
-
       <v-col cols="4">
-        <span class="text-page">  Email Id </span>
-        <v-text-field label="email" v-model="email" outlined />
+        <span class="text-page"> Email Id </span>
+        <v-text-field label="email" v-model="email" outlined :class="{'error-border': !isValid.email}" />
+        <div v-if="!isValid.email" class="error-message">Email is required.</div>
       </v-col>
 
     </v-row>
@@ -96,18 +99,17 @@
 
       <v-col cols="4">
         <span class="text-page"> Pincode </span>
-        <v-text-field label="Pin code" v-model="pincode" outlined/>
+        <v-text-field label="Pin code" v-model="pincode" outlined :class="{'error-border': !isValid.pincode}" />
+        <div v-if="!isValid.pincode" class="error-message">Pincode is required.</div>
       </v-col>
-
 
       <v-col cols="4">
         <span class="text-page"> City </span>
         <v-text-field label="City" v-model="city" outlined />
       </v-col>
 
-
       <v-col cols="4">
-        <span class="text-page">  State </span>
+        <span class="text-page"> State </span>
         <v-text-field label="state" v-model="state" outlined />
       </v-col>
 
@@ -115,18 +117,18 @@
 
     <v-row>
       <v-col cols="12">
-        <span class="text-page">  Address </span>
-        <v-text-field label="Address" v-model="address" outlined />
+        <span class="text-page"> Address </span>
+        <v-text-field label="Address" v-model="address" outlined :class="{'error-border': !isValid.address}" />
+        <div v-if="!isValid.address" class="error-message">Address is required.</div>
       </v-col>
     </v-row>
   </div>
 
   <v-row justify="end" style="padding: 20px;">
-  <v-col cols="auto">
-    <v-btn class="next-button" @click="NextPage">Next</v-btn>
-  </v-col>
-</v-row>
-
+    <v-col cols="auto">
+      <v-btn class="next-button" @click="NextPage">Next</v-btn>
+    </v-col>
+  </v-row>
 
 </template>
 
@@ -142,9 +144,8 @@ export default {
 
   data() {
     return {
-      selectedDate: null,
       dialog: false,
-      paymentDate: null,  // Initialize paymentDate to null, or set a default date if needed
+      paymentDate: null,  
       companyName: '',
       companymobilenumber: '',
       mobilenumber: '',
@@ -157,48 +158,103 @@ export default {
       city: '',
       state: '',
       address: '',
-      isvalid:true
-    }
+      isValid: {
+        companyName: true,
+        companymobilenumber: true,
+        companyemail: true,
+        gstnumber: true,
+        companyaddress: true,
+        paymentDate: true,
+        name: true,
+        mobilenumber: true,
+        email: true,
+        pincode: true,
+        address: true,
+      }
+    };
   },
   methods: {
     goBack() {
       this.$router.go(-1);
     },
+
     NextPage() {
-      console.log('next')
-      if (this.companyName === '') {
-        this.isvalid = false;
-        console.log('Company name is empty');
-        return;
-      }
-      // data to store 
-      const invoiceData = {
-        companyName: this.companyName,
-        companymobilenumber: this.companymobilenumber,
-        mobilenumber: this.mobilenumber,
-        companyemail: this.companyemail,
-        email: this.email,
-        gstnumber: this.gstnumber,
-        companyaddress: this.companyaddress,
-        paymentDate: this.paymentDate,
-        name: this.name,
-        pincode: this.pincode,
-        city: this.city,
-        state: this.state,
-        address: this.address,
+      // Reset all validations
+      this.isValid = {
+        companyName: true,
+        companymobilenumber: true,
+        companyemail: true,
+        gstnumber: true,
+        companyaddress: true,
+        paymentDate: true,
+        name: true,
+        mobilenumber: true,
+        email: true,
+        pincode: true,
+        address: true,
       };
 
-      this.$store.dispatch('addInvoiceData', invoiceData);
-      this.invoiceData = '';
+      let isValid = true;
 
-      console.log(invoiceData)
+      if (this.companyName === '') {
+        this.isValid.companyName = false;
+        isValid = false;
+      }
+      if (!/^\d{10}$/.test(this.companymobilenumber)) {
+        this.isValid.companymobilenumber = false;
+        isValid = false;
+      }
+      if (this.companyemail === '') {
+        this.isValid.companyemail = false;
+        isValid = false;
+      }
+      if (this.gstnumber === '') {
+        this.isValid.gstnumber = false;
+        isValid = false;
+      }
+      if (!this.paymentDate) {
+        this.isValid.paymentDate = false;
+        isValid = false;
+      }
+      if (this.name === '') {
+        this.isValid.name = false;
+        isValid = false;
+      }
+      if (this.pincode === '') {
+        this.isValid.pincode = false;
+        isValid = false;
+      }
+      if (this.address === '') {
+        this.isValid.address = false;
+        isValid = false;
+      }
 
-      //if validation ok then
-      this.$router.push({ name: 'transactiondetail' })
+      // If all fields are valid, proceed
+      if (isValid) {
+        const invoiceData = {
+          companyName: this.companyName,
+          companymobilenumber: this.companymobilenumber,
+          mobilenumber: this.mobilenumber,
+          companyemail: this.companyemail,
+          email: this.email,
+          gstnumber: this.gstnumber,
+          companyaddress: this.companyaddress,
+          paymentDate: this.paymentDate,
+          name: this.name,
+          pincode: this.pincode,
+          city: this.city,
+          state: this.state,
+          address: this.address,
+        };
+
+        this.$store.dispatch('addInvoiceData', invoiceData);
+        this.$router.push({ name: 'transactiondetail' });
+      }
     },
   }
 };
 </script>
+
 
 <style scoped>
 .add-invoice-container {
@@ -218,6 +274,11 @@ export default {
 }
 .heading-company-detals{
   color: #2F80ED;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }
 .text-page{
   font-family: 'Roboto', sans-serif;
