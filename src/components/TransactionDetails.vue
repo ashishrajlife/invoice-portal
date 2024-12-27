@@ -26,118 +26,116 @@
     </v-col>
   </v-row>
 
+  <v-row>
+    <v-col cols="12">
+      <v-typography class="header-title">Transaction Details</v-typography>
+    </v-col>
+  </v-row>
 
-    <v-row>
-      <v-col cols="12">
-        <v-typography class="header-title">Transaction Details</v-typography>
-      </v-col>
-    </v-row>
+  <v-row>
+    <v-col class="table-container">
+      <v-simple-table class="transaction-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Rate</th>
+            <th>Quantity</th>
+            <th>Discount (in Rs.)</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in items" :key="index">
+            <td>
+              <v-text-field
+                v-model="item.product"
+                label="Enter Product"
+                outlined
+                dense
+                class="input-field"
+              />
+            </td>
+            <td>
+              <v-text-field
+                v-model.number="item.rate"
+                label="Enter Rate"
+                outlined
+                dense
+                type="number"
+                class="input-field"
+              />
+            </td>
+            <td>
+              <v-text-field
+                v-model.number="item.quantity"
+                label="Enter Quantity"
+                outlined
+                dense
+                type="number"
+                class="input-field"
+              />
+            </td>
+            <td>
+              <v-text-field
+                v-model.number="item.discount"
+                label="Enter Discount"
+                outlined
+                dense
+                type="number"
+                class="input-field"
+              />
+            </td>
+            <td>{{ calculateTotal(item) }}</td>
+            <td>
+              <v-btn icon color="red" class="custom-remove-btn" @click="removeItem(index)">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </td>
+          </tr>
+        </tbody>
+      </v-simple-table>
+    </v-col>
+  </v-row>
 
-    <v-row>
-      <v-col class="table-container">
-        <v-simple-table class="transaction-table">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Rate</th>
-              <th>Quantity</th>
-              <th>Discount (in Rs.)</th>
-              <th>Total</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in items" :key="index">
-              <td>
-                <v-text-field
-                  v-model="item.product"
-                  label="Enter Product"
-                  outlined
-                  dense
-                  class="input-field"
-                />
-              </td>
-              <td>
-                <v-text-field
-                  v-model.number="item.rate"
-                  label="Enter Rate"
-                  outlined
-                  dense
-                  type="number"
-                  class="input-field"
-                />
-              </td>
-              <td>
-                <v-text-field
-                  v-model.number="item.quantity"
-                  label="Enter Quantity"
-                  outlined
-                  dense
-                  type="number"
-                  class="input-field"
-                />
-              </td>
-              <td>
-                <v-text-field
-                  v-model.number="item.discount"
-                  label="Enter Discount"
-                  outlined
-                  dense
-                  type="number"
-                  class="input-field"
-                />
-              </td>
-              <td>{{ calculateTotal(item) }}</td>
-              <td>
-                <v-btn icon color="red" class="custom-remove-btn" @click="removeItem(index)">
-                  <v-icon>mdi-close</v-icon>
-                </v-btn>
-              </td>
-            </tr>
-          </tbody>
-        </v-simple-table>
-      </v-col>
-    </v-row>
+  <v-row align="center" justify="space-between">
+    <!-- Add Button -->
+    <v-col cols="4" class="text-left">
+      <v-btn icon color="primary" @click="addItem" class="add-btn">
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
+    </v-col>
 
-    <!-- Add Item Button, Total, and Navigation Buttons -->
-      <v-row align="center" justify="space-between">
-        <!-- Add Button -->
-        <v-col cols="4" class="text-left">
-          <v-btn icon color="primary" @click="addItem" class="add-btn">
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-        </v-col>
+    <!-- Grand Total and Navigation Buttons -->
+    <v-col cols="4" class="text-center total-container">
+      <!-- Grand Total -->
+      <div class="total-grand">
+        <span><strong>Total</strong></span>
+        <span class="divider">|</span>
+        <span>Rs. {{ grandTotal }}</span>
+      </div>
 
-        <!-- Grand Total and Navigation Buttons -->
-        <v-col cols="4" class="text-center total-container">
-          <!-- Grand Total -->
-          <div class="total-grand">
-            <span><strong>Total</strong></span>
-            <span class="divider">|</span>
-            <span>Rs. {{ grandTotal }}</span>
-          </div>
+      <!-- Navigation Buttons -->
+      <div class="navigation-buttons">
+        <v-btn class="back-button" @click="goBack">Back</v-btn>
+        <v-btn class="next-button" @click="goNext">Next</v-btn>
+      </div>
+    </v-col>
 
-          <!-- Navigation Buttons -->
-          <div class="navigation-buttons">
-            <v-btn class="back-button" @click="goBack">Back</v-btn>
-            <v-btn class="next-button" @click="goNext">Next</v-btn>
-          </div>
-        </v-col>
-
-        <!-- Empty Spacer -->
-        <v-col cols="4"></v-col>
-      </v-row>
-
+    <!-- Empty Spacer -->
+    <v-col cols="4"></v-col>
+  </v-row>
 </template>
 
 <script>
 import AppDrawer from './AppDrawer.vue';
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
+
 export default {
   components: {
-  AppDrawer,
-},
+    AppDrawer,
+  },
   data() {
     return {
       items: [
@@ -163,6 +161,7 @@ export default {
       return rate * quantity - discount;
     },
     addItem() {
+      if(this.validateFields()===false) return;  // validation for adding empty rows
       this.items.push({
         product: "",
         rate: 0,
@@ -171,23 +170,48 @@ export default {
       });
     },
     removeItem(index) {
-      if(this.items.length < 2 ){
-        console.log('cannot remove', this.items.length)
-        toast.warn('At least one Row is Mandatory !', { autoClose: 3500 });
+      if (this.items.length < 2) {
+        console.log('cannot remove', this.items.length);
+        toast.warn('At least one Row is Mandatory!', { autoClose: 3500 });
         return;
       }
       this.items.splice(index, 1);
+    },
+    validateFields() {
+      for (let i = 0; i < this.items.length; i++) {
+        const item = this.items[i];
+        if (!item.product) {
+          toast.error('Product cannot be empty!', { autoClose: 3500 });
+          return false;
+        }
+        if (!item.rate) {
+          toast.error('Rate cannot be empty!', { autoClose: 3500 });
+          return false;
+        }
+        if (!item.quantity) {
+          toast.error('Quantity cannot be empty!', { autoClose: 3500 });
+          return false;
+        }
+        if (!item.discount) {
+          toast.error('Discount cannot be empty!', { autoClose: 3500 });
+          return false;
+        }
+      }
+      return true;
     },
     goBack() {
       this.$router.go(-1);
     },
     goNext() {
-      this.$store.dispatch('addTransactionData', this.items);
-      this.$router.push({ name: "preview" });
+      if (this.validateFields()===true) {
+        this.$store.dispatch('addTransactionData', this.items);
+        this.$router.push({ name: "preview" });
+      }
     },
   },
 };
 </script>
+
 
 <style scoped>
 .table-container{

@@ -173,6 +173,22 @@ export default {
       }
     };
   },
+  mounted(){
+  const savedData = JSON.parse(localStorage.getItem('invoiceData')) || {};
+  this.companyName = savedData.companyName || '';
+  this.companymobilenumber = savedData.companymobilenumber || '';
+  this.companyemail = savedData.companyemail || '';
+  this.gstnumber = savedData.gstnumber || '';
+  this.companyaddress = savedData.companyaddress || '';
+  this.paymentDate = savedData.paymentDate || '';
+  this.name = savedData.name || '';
+  this.mobilenumber = savedData.mobilenumber || '';
+  this.email = savedData.email || '';
+  this.pincode = savedData.pincode || '';
+  this.city = savedData.city || '';
+  this.state = savedData.state || '';
+  this.address = savedData.address || '';
+  },
   methods: {
     goBack() {
       this.$router.go(-1);
@@ -246,7 +262,7 @@ export default {
           state: this.state,
           address: this.address,
         };
-
+        localStorage.setItem('invoiceData', JSON.stringify(invoiceData));
         this.$store.dispatch('addInvoiceData', invoiceData);
         this.$router.push({ name: 'transactiondetail' });
       }
