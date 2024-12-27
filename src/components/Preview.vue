@@ -1,30 +1,78 @@
 <template>
   <AppDrawer />
 
+  <v-row
+    class="page-header"
+    style="display: flex; align-items: center; justify-content: flex-start;"
+  >
+    <v-col cols="1">
+      <v-img
+        src="../../src/assets/images/back.png"
+        alt="back"
+        @click="goBack"
+        style="height: 24px; cursor: pointer;"
+      />
+    </v-col>
+    <v-col>
+      <span class="page-heading"> Add New Invoice </span>
+    </v-col>
+  </v-row>
+
+  <v-row>
+    <v-col cols="12">
+      <span>Progress bar</span>
+    </v-col>
+  </v-row>
+
+
   <div style="padding: 25px;">
     <v-row justify="space-between" align="center" class="mb-4">
-      <v-col cols="12" md="6">
-        <h1 class="text-h5">Invoice</h1>
-        <div>#3456789</div>
+
+      <v-col cols="6">
+        <h2 class="text-h6 company-name-style">{{ invoiceData.companyName }}</h2>
       </v-col>
-      <v-col cols="12" md="6" class="text-right">
-        <div>Date: <strong>{{ invoiceData.paymentDate }}</strong></div>
+
+      <v-col cols="6" md="6" class="text-right">
+        <!-- -->
+        <div>Mobile: <strong>{{ invoiceData.companymobilenumber }}</strong></div>
+        <div>Email: <strong>{{ invoiceData.companyemail }}</strong></div>
+        <div>GSTIN: <strong>{{ invoiceData.gstnumber }}</strong></div>
       </v-col>
+    </v-row>
+
+
+    <v-row align="center" class="invoice-header">
+  <v-col cols="10">
+    <h2 class="invoice-title">Invoice</h2>
+  </v-col>
+
+  <!-- Invoice Number -->
+  <v-col class="invoice-number" cols="2" align="end">
+    <div>#3456789</div>
+  </v-col>
+</v-row>
+
+    <v-row>
+      <v-col>
+        <h2>Invoice To:</h2> 
+      </v-col>
+
+      <v-col class="invoice-number">
+        <div>Date: <strong>{{ invoiceData.paymentDate }}</strong></div> 
+      </v-col>
+
     </v-row>
 
     <v-row class="mb-4">
       <v-col cols="12" md="6">
-        <h2 class="text-h6">INVOICE TO:</h2>
         <div>Name: <strong>{{ invoiceData.name }}</strong></div>
         <div>Mobile: <strong>{{ invoiceData.mobilenumber }}</strong></div>
         <div>Email: <strong>{{ invoiceData.email }}</strong></div>
         <div>Address: <strong>{{ invoiceData.address }}</strong></div>
       </v-col>
       <v-col cols="12" md="6" class="text-right">
-        <h2 class="text-h6">{{ invoiceData.companyName }}</h2>
-        <div>Mobile: <strong>{{ invoiceData.companymobilenumber }}</strong></div>
-        <div>Email: <strong>{{ invoiceData.companyemail }}</strong></div>
-        <div>GSTIN: <strong>{{ invoiceData.gstnumber }}</strong></div>
+       
+        
       </v-col>
     </v-row>
 
@@ -49,15 +97,25 @@
         </div>
       </v-col>
 
-      <v-col cols="12" class="mb-2 text-right">
-        <div class="font-weight-bold">Total: Rs. {{ grandTotal }}</div>
-      </v-col>
     </v-row>
 
     <v-row justify="end" class="mt-4">
-      <v-btn color="primary" class="mr-2" @click="goBack">Back</v-btn>
-      <v-btn color="success" @click="saveInvoice">Done</v-btn>
-    </v-row>
+  <v-col cols="12" class="mb-2 text-right total-grand">
+    <div class="font-weight-bold">Total 
+      <span class="divider">|</span>
+      Rs. {{ grandTotal }}
+    </div>
+  </v-col>
+</v-row>
+
+
+<v-row justify="end" class="mt-4">
+  <v-col cols="auto" class="text-right">
+    <v-btn class="back-button" @click="goBack">Back</v-btn>
+    <v-btn class="next-button" @click="saveInvoice">Done</v-btn>
+  </v-col>
+</v-row>
+
   </div>
 </template>
 
@@ -70,12 +128,10 @@ export default {
   },
   computed: {
     invoiceData() {
-      // Ensure you're properly accessing non-reactive data
-      return JSON.parse(JSON.stringify(this.$store.getters.getInvoiceData)) || {}; // To unwrap the reactive object
+      return JSON.parse(JSON.stringify(this.$store.getters.getInvoiceData)) || {};
     },
     transactionData() {
-      // Ensure you're properly accessing non-reactive data
-      return JSON.parse(JSON.stringify(this.$store.getters.getTransactionData)) || []; // To unwrap the reactive object
+      return JSON.parse(JSON.stringify(this.$store.getters.getTransactionData)) || [];
     },
     grandTotal() {
       return this.transactionData.reduce((sum, item) => sum + this.calculateTotal(item), 0);
@@ -87,13 +143,12 @@ export default {
     },
     saveInvoice() {
       console.log('save invoice')
-    // Dispatch action to save invoice and transaction data
+    //  to save invoice and transaction data
     this.$store.dispatch('saveInvoice', {
       invoiceData: this.invoiceData,
       transactionData: this.transactionData
     })
     .then(() => {
-      // Redirect or handle after saving
       this.$router.push('dashboard'); // Redirect to the invoice list page
     })
     .catch(error => {
@@ -110,5 +165,72 @@ export default {
 </script>
 
 <style scoped>
-/* Your styles remain unchanged */
+.page-heading {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.page-header {
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.invoice-header {
+  background-color: #f7f9fc; 
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.invoice-title {
+  color: #28a745; 
+  font-weight: bold;
+  margin: 0;
+}
+
+.invoice-number {
+  color: #333; 
+  font-weight: 500; 
+  text-align: right; 
+}
+.company-name-style{
+font-size: 32px;
+font-weight: 700;
+line-height: 26px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+color:#424242;
+}
+.total-grand {
+  max-width: 659px;
+    max-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.divider {
+  color: #000;
+  font-weight: bold; 
+}
+.next-button {
+  width: 124px; 
+  height: 56px; 
+  border-radius: 30px; 
+  background-color: #2F80ED; 
+  color: white; 
+  font-size: 16px;
+  margin-left: 20px; /* Slight margin between the buttons */
+}
+
+.back-button {
+  width: 124px; 
+  height: 56px; 
+  border-radius: 30px; 
+  border: 1px solid #2F80ED;
+  background-color: #ffffff; 
+  color: #2F80ED; 
+  font-size: 16px;
+}
+
 </style>
