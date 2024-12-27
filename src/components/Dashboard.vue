@@ -89,31 +89,17 @@ opacity: 0px;
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
   name: "Dash-Board",
-  components: {
-  },
   data() {
     return {
-      selectedFilter: "all", 
+      selectedFilter: "all",
       filterOptions: ["User Generated", "Panel Generated", "All"],
-      activeSection: "invoices", 
-       selectedCard: "all",
-      tableData: [
-        {
-          id: 2,
-          initiatedOn: "05 Mar 2022 07:30 AM",
-          generatedBy: "User",
-          customerName: "Abhishek Dewangan (9877746789)",
-        },
-        {
-          id: 1,
-          initiatedOn: "04 Mar 2022 03:35 PM",
-          generatedBy: "Panel",
-          customerName: "Narayan Dewangan (9876789765)",
-        },
-      ],
+      activeSection: "invoices",
+      selectedCard: "all",
+      tableData: [],
       filteredTableData: [],
     };
   },
@@ -129,8 +115,26 @@ export default {
     },
   },
   methods: {
+    async fetchData() {
+      try {
+        const response = await axios.get("https://project-data-cc03.onrender.com/invoices"); // Replace with actual endpoint
+        const responseData = response.data;
+
+        // Map API response to tableData
+        this.tableData = responseData.map((invoice) => ({
+          id: invoice.id,
+          initiatedOn: new Date(invoice.invoiceData.paymentDate).toLocaleString(), // Format the date
+          generatedBy: "User", // Add logic if there's a "generatedBy" field
+          customerName: `${invoice.invoiceData.name} (${invoice.invoiceData.mobilenumber})`,
+        }));
+
+        this.filterTableData("all"); 
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
     logoutUser() {
-      console.log("user-loggedout-from-dashboard-click");
+      console.log("User logged out from dashboard");
       this.$store.dispatch("logout");
       this.$router.push("/");
     },
@@ -145,21 +149,24 @@ export default {
     filterTableData(filter) {
       this.selectedCard = filter;
       if (filter === "all") {
-        this.filteredTableData = this.tableData; // Show all data if "all" or no filter selected
+        this.filteredTableData = this.tableData; // Show all data
       } else {
-        this.filteredTableData = this.tableData.filter((item) => item.generatedBy === filter);
+        this.filteredTableData = this.tableData.filter(
+          (item) => item.generatedBy === filter
+        );
       }
     },
     editItem(item) {
-      this.$router.push({ name: 'editinvoice'})
+      this.$router.push({ name: "editinvoice" });
       console.log("Edit Item:", item);
-  }
+    },
   },
   mounted() {
-    this.filterTableData(this.selectedFilter);
+    this.fetchData(); // Fetch data when component mounts
   },
 };
 </script>
+
 
 <style scoped>
 
