@@ -3,6 +3,7 @@ import Login from '../components/Login.vue';
 import Dashboard from '../components/Dashboard.vue';
 import addinvoice from '@/components/addinvoice.vue';
 import TransactionDetails from '@/components/TransactionDetails.vue';
+import Preview from '@/components/Preview.vue';
 
 const routes = [
   {
@@ -25,6 +26,16 @@ const routes = [
     path: "/transactiondetails",
     name: "transactiondetails",
     component: TransactionDetails,
+  },
+  {
+    path: '/transactiondetail',
+    name: 'transactiondetail',
+    component: TransactionDetails,
+  },
+  {
+    path: '/preview',
+    name: 'preview',
+    component: Preview,
   },
   
 ];

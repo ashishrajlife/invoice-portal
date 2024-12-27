@@ -103,20 +103,7 @@ export default {
       filterOptions: ["User Generated", "Panel Generated", "All"],
       activeSection: "invoices", 
        selectedCard: "all",
-      tableData: [
-        {
-          id: 2,
-          initiatedOn: "05 Mar 2022 07:30 AM",
-          generatedBy: "User",
-          customerName: "Abhishek Dewangan (9877746789)",
-        },
-        {
-          id: 1,
-          initiatedOn: "04 Mar 2022 03:35 PM",
-          generatedBy: "Panel",
-          customerName: "Narayan Dewangan (9876789765)",
-        },
-      ],
+      tableData: [],
       filteredTableData: [], // To store filtered data
     };
   },
