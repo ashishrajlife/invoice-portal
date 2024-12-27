@@ -245,7 +245,7 @@ export default {
         isValid = false;
       }
 
-      // If all fields are valid, proceed
+      // If all fields are valid checking
       if (isValid) {
         const invoiceData = {
           companyName: this.companyName,
@@ -277,47 +277,55 @@ export default {
   padding: 20px;
   background-color: #f9fbff;
 }
+
 .error-border {
   border: 2px solid red;
   height: 57px;
 }
+
 .page-heading {
   font-weight: 600;
 }
+
 .page-header {
   padding: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.heading-company-detals{
+
+.heading-company-details {
   color: #2F80ED;
 }
+
 .error-message {
   color: red;
   font-size: 12px;
   margin-top: 5px;
 }
-.text-page{
+
+.text-page {
   font-family: 'Roboto', sans-serif;
-font-size: 12px;
-font-style: italic;
-font-weight: 900;
-line-height: 16px;
-text-align: left;
-text-underline-position: from-font;
-text-decoration-skip-ink: none;
+  font-size: 12px;
+  font-weight: 900;
+  font-style: italic;
+  line-height: 16px;
+  text-align: left;
+  text-decoration-skip-ink: none;
+  text-underline-position: from-font;
 }
+
 .next-button {
-  width: 124px; 
-  height: 56px; 
-  border-radius: 30px; 
-  margin-right: 30px; 
-  background-color: #2F80ED; 
-  color: white; 
+  width: 124px;
+  height: 56px;
+  border-radius: 30px;
+  margin-right: 30px;
+  background-color: #2F80ED;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-transform: none; 
+  text-transform: none;
   font-size: 16px;
 }
+
 
 </style>

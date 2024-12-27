@@ -87,7 +87,7 @@
         </div>
       </v-col>
 
-      <v-col cols="12" class="mb-2" v-for="(item, index) in transactionData" :key="index">
+      <v-col cols="12" class="mb-2" v-for="(item, index) in transactionData" :key="index" style="padding: 0px 35px 0px;">
         <div class="d-flex justify-space-between">
           <span>{{ item.product }}</span>
           <span>{{ item.rate }}</span>
