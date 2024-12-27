@@ -4,7 +4,7 @@ import Dashboard from '../components/Dashboard.vue';
 import addinvoice from '@/components/addinvoice.vue';
 import TransactionDetails from '@/components/TransactionDetails.vue';
 import Preview from '@/components/Preview.vue';
-import editinvoice from '@/components/editinvoice.vue'
+import updateinvoice from '@/components/updateinvoice.vue'
 
 const routes = [
   {
@@ -39,9 +39,9 @@ const routes = [
     component: Preview,
   },
   {
-    path: '/editinvoice',
-    name: 'editinvoice',
-    component: editinvoice,
+    path: '/updateinvoice',
+    name: 'updateinvoice',
+    component: updateinvoice,
   },
 
   
