@@ -78,7 +78,7 @@
 
     <v-row class="product-list">
       <v-col cols="12" class="mb-2">
-        <div class="d-flex justify-space-between font-weight-bold">
+        <div class="d-flex justify-space-between font-weight-bold heading-data-table">
           <span>Product</span>
           <span>Rate</span>
           <span>Quantity</span>
@@ -184,7 +184,11 @@ export default {
   font-weight: bold;
   margin: 0;
 }
-
+.heading-data-table{
+  border: 1px solid black;
+    padding: 10px 15px;
+    background-color: antiquewhite;
+}
 .invoice-number {
   color: #333; 
   font-weight: 500; 

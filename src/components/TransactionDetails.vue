@@ -155,6 +155,10 @@ export default {
       }, 0);
     },
   },
+  mounted(){
+    const savedData = JSON.parse(localStorage.getItem('transactiondata')) || [];
+    this.items = savedData.length ? savedData : this.items;
+  },
   methods: {
     calculateTotal(item) {
       const { rate, quantity, discount } = item;
@@ -203,6 +207,8 @@ export default {
       this.$router.go(-1);
     },
     goNext() {
+      const transactiondata = this.items;
+      localStorage.setItem('transactiondata', JSON.stringify(transactiondata));
       if (this.validateFields()===true) {
         this.$store.dispatch('addTransactionData', this.items);
         this.$router.push({ name: "preview" });
