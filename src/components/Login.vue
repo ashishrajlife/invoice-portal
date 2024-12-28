@@ -51,13 +51,11 @@ export default {
 
     const checkingToast = toast.info('Checking credentials Please Wait...', { autoClose: false });
     try {
-      await new Promise(resolve => setTimeout(resolve, 10000)); 
+      await new Promise(resolve => setTimeout(resolve, 90000)); 
       toast.update(checkingToast, { render: 'Server is authorizing Please Wait...', type: 'info', autoClose: false });
 
-      await new Promise(resolve => setTimeout(resolve, 15000));
+      await new Promise(resolve => setTimeout(resolve, 90000));
       toast.update(checkingToast, { render: 'Logging you in Please Wait...', type: 'info', autoClose: false });
-
-      await new Promise(resolve => setTimeout(resolve, 10000));
 
       const response = await axios.get('https://project-data-cc03.onrender.com/users', {
         params: { email: this.email, password: this.password },
