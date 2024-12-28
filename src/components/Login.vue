@@ -10,8 +10,10 @@
 
       <v-card-text>
         <v-form ref="form" v-model="valid">
-          <v-text-field v-model="email" label="Email" :rules="[rules.required, rules.email]" variant="solo-inverted" placeholder="Enter your email" />
-          <v-text-field  v-model="password" label="Password" :rules="[rules.required]" type="password" outlined dense placeholder="Enter your password" class="mt-4" />
+          <span>Email</span>
+          <v-text-field v-model="email" label="Email" :rules="[rules.required, rules.email]"  placeholder="Enter your email" />
+          <span>Password</span>
+          <v-text-field  v-model="password" label="Password" :rules="[rules.required]" type="password" dense placeholder="Enter your password" class="mt-4" />
         </v-form>
       </v-card-text>
 
