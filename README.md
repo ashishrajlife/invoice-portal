@@ -28,4 +28,3 @@ https://quickinvoicebill.netlify.app
 ![Screenshot of dashboard ](\projectshots\dashboard.png)
 ![Screenshot of invoicedetails](\projectshots\invoicedetails.png)
 ![Screenshot of login page](\projectshots\login.jpg)
-![Screenshot of create transaction page](\projectshots\transaction.png)
