@@ -70,9 +70,15 @@
           <tbody>
             <tr v-for="(item, index) in filteredTableData" :key="index">
               <td>{{ item.id }}</td>
-              <td>{{ item.initiatedOn }}</td>
+              <td> 
+                <span>{{ item.initiatedOn.date }}</span><br>
+                <span>{{ item.initiatedOn.time }}</span>
+              </td>
               <td>{{ item.generatedBy }}</td>
-              <td>{{ item.customerName }}</td>
+              <td> 
+                <span>{{ item.customerName.name }}</span><br>
+                <span>{{ item.customerName.mobileNumber }}</span>
+              </td>
               <td>
                 <v-btn class="edit-button" small @click="editItem(item)">Edit</v-btn>
               </td>
@@ -120,13 +126,18 @@ export default {
         const responseData = response.data;
 
         // transfering API response to tableData
-        this.tableData = responseData.map((invoice) => ({
+        this.tableData = responseData.map((invoice) => {
+  const dateTime = new Date(invoice.invoiceData.paymentDate).toLocaleString();
+  const [date, time] = dateTime.split(', '); // Split into date and time
+  return {
           id: invoice.id,
-          initiatedOn: new Date(invoice.invoiceData.paymentDate).toLocaleString(), 
+          initiatedOn: { date, time }, // Store separately
           generatedBy: "User",
-          customerName: `${invoice.invoiceData.name} (${invoice.invoiceData.mobilenumber})`,
-        }));
-
+          customerName: {
+            name: invoice.invoiceData.name,
+            mobileNumber: invoice.invoiceData.mobilenumber,
+          },
+      }})
         this.filterTableData("all"); 
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -201,8 +212,19 @@ export default {
   text-align: center;
 }
 
+.custom-table td{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 30px;
+  padding: 30px;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
 .custom-table th {
   background-color: #CBE0EF;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* Table styles */

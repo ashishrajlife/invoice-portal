@@ -48,7 +48,7 @@ export default {
       toast.error('Please fill out the form correctly', { autoClose: 3500 });
       return;
     }
-    toast.info('May take upto 30 sec for 1st time / Backend Config')
+    toast.info('May Take Upto 30 Sec For First Login In Every 24 hour / Backend Config Run', { autoClose: 35000 })
     try {
 
       const response = await axios.get('https://project-data-cc03.onrender.com/users', {
