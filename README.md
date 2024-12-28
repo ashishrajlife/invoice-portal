@@ -1,6 +1,10 @@
 ## Project Overview
 The Invoice Portal is a web application built with Vue.js, Vuetify, and JSON Server for the backend, using Vuex for state management. It streamlines invoice creation and viewing, offering a simple and efficient solution for managing invoices.
 
+## required Credentials
+username: ashish@gmail.com 
+password : 1234
+
 ## Instructions to Run the Project Locally
 
 1. **Clone the Repository**  
@@ -28,4 +32,3 @@ https://quickinvoicebill.netlify.app
 ![Screenshot of dashboard ](\projectshots\dashboard.png)
 ![Screenshot of invoicedetails](\projectshots\invoicedetails.png)
 ![Screenshot of login page](\projectshots\login.jpg)
-![Screenshot of create transaction page](\projectshots\transaction.png)
