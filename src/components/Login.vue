@@ -46,8 +46,6 @@ export default {
       toast.error('Please fill out the form correctly', { autoClose: 3500 });
       return;
     }
- 
-    //############ SERVER WAS TAKING 30 SECONDS FOR THE FIRST LOGIN REGISTER AS ITS ON RENDER SO I HANDLED IT MANUALLY  #############
     toast.info('May take upto 30 sec for 1st time / Backend Config')
     try {
 

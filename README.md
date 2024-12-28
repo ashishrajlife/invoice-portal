@@ -1,28 +1,31 @@
-<<<<<<< HEAD
-# userapplication
+## Project Overview
+The Invoice Portal is a web application built with Vue.js, Vuetify, and JSON Server for the backend, using Vuex for state management. It streamlines invoice creation and viewing, offering a simple and efficient solution for managing invoices.
 
-## Project setup
-```
-npm install
-```
+## Instructions to Run the Project Locally
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+1. **Clone the Repository**  
+   Clone the GitHub repository by running the following command:  
 
-### Compiles and minifies for production
-```
-npm run build
-```
+   git clone https://github.com/ashishrajlife/invoice-portal.git
 
-### Lints and fixes files
-```
-npm run lint
-```
+2. **Navigate to the folder** 
+   cd invoice-portal
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-=======
-# invoice-portal
->>>>>>> 6e46c390b680a07c234fa12a97be9e0f5837b541
+3. **Install Dependencies** 
+   npm install
+
+4.  **Start the Development Server** 
+   npm run serve 
+   npm run dev
+
+
+###### DEPLOYMENT LINK ------
+https://quickinvoicebill.netlify.app
+
+## Screenshot of application
+
+![Screenshot of create invoice](\projectshots\addnewinvoice.png)
+![Screenshot of dashboard ](\projectshots\dashboard.png)
+![Screenshot of invoicedetails](\projectshots\invoicedetails.png)
+![Screenshot of login page](\projectshots\login.jpg)
+![Screenshot of create transaction page](\projectshots\transaction.png)
