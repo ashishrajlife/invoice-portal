@@ -19,13 +19,6 @@
     </v-col>
   </v-row>
 
-  <!-- Progress Bar -->
-  <v-row>
-    <v-col cols="12">
-      <span>Progress bar</span>
-    </v-col>
-  </v-row>
-
   <v-row>
     <v-col cols="12">
       <v-typography class="header-title">Transaction Details</v-typography>

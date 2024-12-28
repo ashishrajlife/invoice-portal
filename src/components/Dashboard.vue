@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <!-- Sidebar (Left Drawer) -->
     <v-navigation-drawer app>
   <v-img src="../assets/images/Cnlogo.png" style="width: 209px;
 height: 117px;
@@ -23,7 +22,7 @@ opacity: 0px;
     </v-navigation-drawer>
 
     <v-main class="vue-main-page-dashboard">
-      <div style="height: 50px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+      <div class="header-style">
      <div class="page-heading"> Invoice List</div>
     </div>
 
@@ -117,14 +116,14 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const response = await axios.get("https://project-data-cc03.onrender.com/invoices"); // Replace with actual endpoint
+        const response = await axios.get("https://project-data-cc03.onrender.com/invoices"); 
         const responseData = response.data;
 
-        // Map API response to tableData
+        // transfering API response to tableData
         this.tableData = responseData.map((invoice) => ({
           id: invoice.id,
-          initiatedOn: new Date(invoice.invoiceData.paymentDate).toLocaleString(), // Format the date
-          generatedBy: "User", // Add logic if there's a "generatedBy" field
+          initiatedOn: new Date(invoice.invoiceData.paymentDate).toLocaleString(), 
+          generatedBy: "User",
           customerName: `${invoice.invoiceData.name} (${invoice.invoiceData.mobilenumber})`,
         }));
 
@@ -144,12 +143,12 @@ export default {
     },
     setActiveSection(section) {
       this.activeSection = section;
-      this.filterTableData("all"); // Reset filter when changing sections
+      this.filterTableData("all"); 
     },
     filterTableData(filter) {
       this.selectedCard = filter;
       if (filter === "all") {
-        this.filteredTableData = this.tableData; // Show all data
+        this.filteredTableData = this.tableData;
       } else {
         this.filteredTableData = this.tableData.filter(
           (item) => item.generatedBy === filter
@@ -157,19 +156,16 @@ export default {
       }
     },
     editItem(item) {
-      this.$router.push({ name: "editinvoice" });
+      this.$router.push({ name: "updateinvoice" });
       console.log("Edit Item:", item);
     },
   },
   mounted() {
-    this.fetchData(); // Fetch data when component mounts
+    this.fetchData();
   },
 };
 </script>
-
-
 <style scoped>
-
 .logout-user-button {
   position: absolute;
   top: 75%;
@@ -236,6 +232,10 @@ export default {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 
+}
+.header-style{
+  height: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .vue-main-page-dashboard{
    margin-top: 15px;

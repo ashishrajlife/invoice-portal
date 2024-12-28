@@ -18,12 +18,6 @@
     </v-col>
   </v-row>
 
-  <v-row>
-    <v-col cols="12">
-      <span>Progress bar</span>
-    </v-col>
-  </v-row>
-
 
   <div style="padding: 25px;">
     <v-row justify="space-between" align="center" class="mb-4">
