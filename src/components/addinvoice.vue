@@ -8,17 +8,12 @@
     </v-col>
   </v-row>
 
-  <v-row>
-    <v-col col="12">
-      <span>Progress bar</span>
-    </v-col>
-  </v-row>
 
-  <div style="padding: 20px;">
-    <v-form>
+
+    <v-form style="padding: 30px;">
       <v-row>
         <v-col cols="12">
-          <v-typography class="text-h5 heading-company-detals">Company Details</v-typography>
+          <v-typography class="text-h5 " style="color: #2F80ED;">Company Details</v-typography>
         </v-col>
         <v-col cols="8">
           <span class="text-page">Company Name</span>
@@ -54,9 +49,9 @@
           <div v-if="!isValid.companyaddress" class="error-message">Company address is required.</div>
         </v-col>
       </v-row>
-    </v-form>
+   
 
-    <v-row style="padding: 20px;">
+    <v-row>
       <v-col cols="12">
         <v-typography class="text-h5" style="color: #2F80ED;">Invoice to details</v-typography>
       </v-col>
@@ -124,13 +119,13 @@
         <div v-if="!isValid.address" class="error-message">Address is required.</div>
       </v-col>
     </v-row>
-  </div>
 
   <v-row justify="end" style="padding: 20px;">
     <v-col cols="auto">
       <v-btn class="next-button" @click="NextPage">Next</v-btn>
     </v-col>
   </v-row>
+</v-form>
 
 </template>
 
