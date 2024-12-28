@@ -40,7 +40,6 @@
     <h2 class="invoice-title">Invoice</h2>
   </v-col>
 
-  <!-- Invoice Number -->
   <v-col class="invoice-number" cols="2" align="end">
     <div>#3456789</div>
   </v-col>
@@ -137,13 +136,14 @@ export default {
     },
     saveInvoice() {
       console.log('save invoice')
-    //  to save invoice and transaction data
+    //to save invoice and transaction data
     this.$store.dispatch('saveInvoice', {
       invoiceData: this.invoiceData,
       transactionData: this.transactionData
     })
     .then(() => {
-      this.$router.push('dashboard'); // Redirect to the invoice list page
+      localStorage.clear();
+      this.$router.push('dashboard'); //Redirect to the dashboard
     })
     .catch(error => {
       console.error('Failed to save invoice:', error);

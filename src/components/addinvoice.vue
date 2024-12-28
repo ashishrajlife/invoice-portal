@@ -62,13 +62,15 @@
       </v-col>
 
       <v-col cols="4">
-        <span class="text-page"> Date </span>
-        <v-text-field v-model="paymentDate" label="Select Date" readonly @click="dialog = true" :class="{'error-border': !isValid.paymentDate}" />
-        <div v-if="!isValid.paymentDate" class="error-message">Date is required.</div>
-        <v-dialog v-model="dialog" persistent max-width="290px">
-          <v-date-picker v-model="paymentDate" @click="dialog = false"></v-date-picker>
-        </v-dialog>
-      </v-col>
+    <span class="text-page"> Date </span>
+    <input
+      type="date"
+      v-model="paymentDate"
+      class="custom-date-input"
+      :class="{'error-border': !isValid.paymentDate}"
+    />
+    <div v-if="!isValid.paymentDate" class="error-message">Date is required.</div>
+  </v-col>
 
     </v-row>
 
@@ -277,7 +279,18 @@ export default {
   padding: 20px;
   background-color: #f9fbff;
 }
-
+.custom-date-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.custom-date-input:focus {
+  border-color: #2F80ED;
+}
 .error-border {
   border: 2px solid red;
   height: 57px;

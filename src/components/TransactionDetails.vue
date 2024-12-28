@@ -1,18 +1,10 @@
 <template>
+  
   <AppDrawer />
 
-  <!-- Page Header -->
-  <v-row
-    class="page-header"
-    style="display: flex; align-items: center; justify-content: flex-start;"
-  >
+  <v-row class="page-header" style="display: flex; align-items: center; justify-content: flex-start;" >
     <v-col cols="1">
-      <v-img
-        src="../../src/assets/images/back.png"
-        alt="back"
-        @click="goBack"
-        style="height: 24px; cursor: pointer;"
-      />
+      <v-img src="../../src/assets/images/back.png" alt="back" @click="goBack" style="height: 24px; cursor: pointer;" />
     </v-col>
     <v-col>
       <span class="page-heading"> Add New Invoice </span>
@@ -41,43 +33,16 @@
         <tbody>
           <tr v-for="(item, index) in items" :key="index">
             <td>
-              <v-text-field
-                v-model="item.product"
-                label="Enter Product"
-                outlined
-                dense
-                class="input-field"
-              />
+              <v-text-field v-model="item.product" label="Enter Product" outlined dense class="input-field" />
             </td>
             <td>
-              <v-text-field
-                v-model.number="item.rate"
-                label="Enter Rate"
-                outlined
-                dense
-                type="number"
-                class="input-field"
-              />
+              <v-text-field v-model.number="item.rate" label="Enter Rate" outlined dense type="number" class="input-field" />
             </td>
             <td>
-              <v-text-field
-                v-model.number="item.quantity"
-                label="Enter Quantity"
-                outlined
-                dense
-                type="number"
-                class="input-field"
-              />
+              <v-text-field v-model.number="item.quantity" label="Enter Quantity" outlined dense type="number" class="input-field" />
             </td>
             <td>
-              <v-text-field
-                v-model.number="item.discount"
-                label="Enter Discount"
-                outlined
-                dense
-                type="number"
-                class="input-field"
-              />
+              <v-text-field v-model.number="item.discount" label="Enter Discount" outlined dense type="number" class="input-field"/>
             </td>
             <td>{{ calculateTotal(item) }}</td>
             <td>
@@ -92,31 +57,24 @@
   </v-row>
 
   <v-row align="center" justify="space-between">
-    <!-- Add Button -->
     <v-col cols="4" class="text-left">
       <v-btn icon color="primary" @click="addItem" class="add-btn">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-col>
 
-    <!-- Grand Total and Navigation Buttons -->
     <v-col cols="4" class="text-center total-container">
-      <!-- Grand Total -->
       <div class="total-grand">
         <span><strong>Total</strong></span>
         <span class="divider">|</span>
         <span>Rs. {{ grandTotal }}</span>
       </div>
 
-      <!-- Navigation Buttons -->
       <div class="navigation-buttons">
         <v-btn class="back-button" @click="goBack">Back</v-btn>
         <v-btn class="next-button" @click="goNext">Next</v-btn>
       </div>
-    </v-col>
-
-    <!-- Empty Spacer -->
-    <v-col cols="4"></v-col>
+    </v-col>  <v-col cols="4"></v-col>
   </v-row>
 </template>
 

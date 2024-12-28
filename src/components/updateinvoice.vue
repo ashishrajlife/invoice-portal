@@ -1,7 +1,6 @@
 <template>
 
-<v-row
-    class="page-header"
+<v-row class="page-header"
     style="display: flex; align-items: center; justify-content: flex-start;"
   >
     <v-col cols="1">
