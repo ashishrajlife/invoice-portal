@@ -1,18 +1,11 @@
 <template>
     <v-navigation-drawer app>
-      <v-img style="width: 209px;
-height: 117px;
-gap: 0px;
-opacity: 0px;
-" src="../assets/images/Cnlogo.png" />
+      <v-img style="width: 209px; height: 117px; gap: 0px; opacity: 0px;" src="../assets/images/Cnlogo.png" />
       <v-list>
         <v-list-item>
           <v-list-item-title>Team</v-list-item-title>
         </v-list-item>
-        <v-list-item
-          :class="{ 'active-item': activeSection === 'invoices' }"
-          @click="updateSection('invoices')"
-        >
+        <v-list-item :class="{ 'active-item': activeSection === 'invoices' }" @click="updateSection('invoices')" >
           <v-list-item-title>Invoices</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -32,9 +25,6 @@ opacity: 0px;
       },
     },
     methods: {
-      updateSection(section) {
-        this.$emit("update:activeSection", section); // Emit event to parent to update the section
-      },
       logoutUser() {
         console.log("User logged out");
         this.$store.dispatch("logout");

@@ -8,8 +8,6 @@
     </v-col>
   </v-row>
 
-
-
     <v-form style="padding: 30px;">
       <v-row>
         <v-col cols="12">
@@ -58,15 +56,9 @@
 
       <v-col cols="4">
     <span class="text-page"> Date </span>
-    <input
-      type="date"
-      v-model="paymentDate"
-      class="custom-date-input"
-      :class="{'error-border': !isValid.paymentDate}"
-    />
+    <input type="date" v-model="paymentDate" class="custom-date-input" :class="{'error-border': !isValid.paymentDate}" />
     <div v-if="!isValid.paymentDate" class="error-message">Date is required.</div>
   </v-col>
-
     </v-row>
 
     <v-row>

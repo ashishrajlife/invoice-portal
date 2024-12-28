@@ -4,12 +4,7 @@
     style="display: flex; align-items: center; justify-content: flex-start;"
   >
     <v-col cols="1">
-      <v-img
-        src="../../src/assets/images/back.png"
-        alt="back"
-        @click="goback"
-        style="height: 24px; cursor: pointer;"
-      />
+      <v-img src="../../src/assets/images/back.png" alt="back" @click="goback" style="height: 24px; cursor: pointer;" />
     </v-col>
     <v-col>
       <span class="page-heading"> Add New Invoice </span>
@@ -28,12 +23,11 @@
     name: 'EditInvoice',
   methods:{
     goback(){
-        this.$router.go(-1)
+    this.$router.go(-1)
     }
   }  
 };
   </script>
-  
   <style scoped>
   .error-container {
     display: flex;

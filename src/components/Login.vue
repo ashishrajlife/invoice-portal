@@ -42,32 +42,43 @@ export default {
   },
   methods: {
     async loginUser() {
-      console.log('in')
-      if (!this.valid) {
-        toast.error('Please fill out the form correctly', { autoClose: 3500 });
-        return;
-      }
+    if (!this.valid) {
+      toast.error('Please fill out the form correctly', { autoClose: 3500 });
+      return;
+    }
+ 
+    //############ SERVER WAS TAKING 30 SECONDS FOR THE FIRST LOGIN REGISTER AS ITS ON RENDER SO I HANDLED IT MANUALLY  #############
 
-      try {
-        console.log('try')
-        const response = await axios.get('https://project-data-cc03.onrender.com/users', {
-          params: { email: this.email, password: this.password },
-        });
-        console.log(response,'resp')
-        if (response.data.length > 0) {
-          const userData = {
-            authToken: response.data[0].authToken,
-          };
-          this.$store.dispatch('login', userData);
-          this.$router.push('/dashboard');
-        } else {
-          toast.error('Invalid credentials', { autoClose: 3500 });
-        }
-      } catch (error) {
-        console.error('Error during login:', error);
-        toast.error('Something went wrong! Please try again.', { autoClose: 3500 });
+    const checkingToast = toast.info('Checking credentials Please Wait...', { autoClose: false });
+    try {
+      await new Promise(resolve => setTimeout(resolve, 10000)); 
+      toast.update(checkingToast, { render: 'Server is authorizing Please Wait...', type: 'info', autoClose: false });
+
+      await new Promise(resolve => setTimeout(resolve, 15000));
+      toast.update(checkingToast, { render: 'Logging you in Please Wait...', type: 'info', autoClose: false });
+
+      await new Promise(resolve => setTimeout(resolve, 10000));
+
+      const response = await axios.get('https://project-data-cc03.onrender.com/users', {
+        params: { email: this.email, password: this.password },
+      });
+
+      if (response.data.length > 0) {
+        const userData = {
+          authToken: response.data[0].authToken,
+        };
+        this.$store.dispatch('login', userData);
+        this.$router.push('/dashboard');
+      } else {
+        throw new Error('Invalid credentials');
       }
-    },
+    } catch (error) {
+      console.error('Error during login:', error);
+      toast.error(error.message || 'Something went wrong! Please try again.', { autoClose: 3500 });
+    }
+  },
+
+
   },
 };
 </script>

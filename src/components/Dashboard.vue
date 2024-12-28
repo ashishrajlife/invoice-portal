@@ -1,17 +1,13 @@
 <template>
   <v-app>
     <v-navigation-drawer app>
-  <v-img src="../assets/images/Cnlogo.png" style="width: 209px;
-height: 117px;
-gap: 0px;
-opacity: 0px;
-" />
+  <v-img src="../assets/images/Cnlogo.png" style="width: 209px; height: 117px; gap: 0px; opacity: 0px;" />
       <v-list>
         <v-list-item>
        <v-list-item-title>Team</v-list-item-title>
        </v-list-item>
     
-    <v-list-item :class="{'active-item': activeSection === 'invoices'}" @click="setActiveSection('invoices')" >
+    <v-list-item :class="{'active-item': activeSection === 'invoices'}" @click="setActiveSection('invoices')" > <!--if more option added in future it will be aa perk-->
       <v-list-item-title>Invoices</v-list-item-title>
     </v-list-item>
 

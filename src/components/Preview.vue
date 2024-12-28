@@ -6,12 +6,7 @@
     style="display: flex; align-items: center; justify-content: flex-start;"
   >
     <v-col cols="1">
-      <v-img
-        src="../../src/assets/images/back.png"
-        alt="back"
-        @click="goBack"
-        style="height: 24px; cursor: pointer;"
-      />
+      <v-img src="../../src/assets/images/back.png" alt="back" @click="goBack" style="height: 24px; cursor: pointer;" />
     </v-col>
     <v-col>
       <span class="page-heading"> Add New Invoice </span>
@@ -114,6 +109,8 @@
 
 <script>
 import AppDrawer from './AppDrawer.vue';
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 export default {
   name: 'PreView',
   components: {
@@ -136,6 +133,7 @@ export default {
     },
     saveInvoice() {
       console.log('save invoice')
+      toast.info('Saving Invoice Please Wait ..!', { autoClose: false });
     //to save invoice and transaction data
     this.$store.dispatch('saveInvoice', {
       invoiceData: this.invoiceData,
