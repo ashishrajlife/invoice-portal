@@ -48,14 +48,8 @@ export default {
     }
  
     //############ SERVER WAS TAKING 30 SECONDS FOR THE FIRST LOGIN REGISTER AS ITS ON RENDER SO I HANDLED IT MANUALLY  #############
-
-    const checkingToast = toast.info('Checking credentials Please Wait...', { autoClose: false });
+    toast.info('May take upto 30 sec for 1st time / Backend Config')
     try {
-      await new Promise(resolve => setTimeout(resolve, 90000)); 
-      toast.update(checkingToast, { render: 'Server is authorizing Please Wait...', type: 'info', autoClose: false });
-
-      await new Promise(resolve => setTimeout(resolve, 90000));
-      toast.update(checkingToast, { render: 'Logging you in Please Wait...', type: 'info', autoClose: false });
 
       const response = await axios.get('https://project-data-cc03.onrender.com/users', {
         params: { email: this.email, password: this.password },
