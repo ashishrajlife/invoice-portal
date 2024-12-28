@@ -56,8 +56,8 @@
           </v-col>
         </v-row>
 
-      <!-- Data Table -->
-        <table class="custom-table">
+      
+        <table class="custom-table" v-if="filteredTableData.length>0">
           <thead>
             <tr>
               <th>ID</th>
@@ -79,6 +79,9 @@
             </tr>
           </tbody>
         </table>
+        <v-else>
+          <span>No Records Present ! </span>
+        </v-else>
     </v-main>
   </v-app>
 </template>
@@ -96,6 +99,7 @@ export default {
       selectedCard: "all",
       tableData: [],
       filteredTableData: [],
+      datapresent:false
     };
   },
   computed: {
