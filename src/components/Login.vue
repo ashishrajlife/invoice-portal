@@ -10,13 +10,13 @@
 
       <v-card-text>
         <v-form ref="form" v-model="valid">
-          <v-text-field v-model="email" label="Email" :rules="[rules.required, rules.email]" outlined dense placeholder="Enter your email" />
+          <v-text-field v-model="email" label="Email" :rules="[rules.required, rules.email]" variant="solo-inverted" placeholder="Enter your email" />
           <v-text-field  v-model="password" label="Password" :rules="[rules.required]" type="password" outlined dense placeholder="Enter your password" class="mt-4" />
         </v-form>
       </v-card-text>
 
       <v-card-actions class="justify-center">
-        <v-btn color="primary" @click="loginUser">Login</v-btn>
+        <v-btn size="x-large" @click="loginUser" class="login-button">Login</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -80,5 +80,11 @@ export default {
 .login-card {
   max-width: 400px;
   width: 100%;
+}
+.login-button{
+  background-color:#2F80ED;
+  width:440px;
+  color:white;
+  font-size:16px;
 }
 </style>

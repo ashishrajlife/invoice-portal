@@ -79,10 +79,10 @@
             </tr>
           </tbody>
         </table>
-        <v-else>
+    </v-main>
+    <v-else>
           <span>No Records Present ! </span>
         </v-else>
-    </v-main>
   </v-app>
 </template>
 
