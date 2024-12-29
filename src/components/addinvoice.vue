@@ -207,7 +207,7 @@ export default {
   }
 
   // Company Mobile Number Validation
-  if (!/^\d{10}$/.test(this.companymobilenumber)|| !noSpecialCharRegex.test(this.name)) {
+  if (!/^\d{10}$/.test(this.companymobilenumber)|| !noSpecialCharRegex.test(this.companymobilenumber)) {
     this.isValid.companymobilenumber = false;
     isValid = false;
   }
@@ -219,7 +219,7 @@ export default {
   }
 
   // GST Number Validation
-  if (this.gstnumber === '' ||  !emailRegex.test(this.companyemail)) {
+  if (this.gstnumber === '' ||  !emailRegex.test(this.gstnumber)) {
     this.isValid.gstnumber = false;
     isValid = false;
   }
@@ -237,7 +237,7 @@ export default {
   }
 
   // Mobile Number Validation
-  if (this.mobilenumber === '' || !noSpecialCharRegex.test(this.pincode)) {
+  if (this.mobilenumber === '' || !noSpecialCharRegex.test(this.mobilenumber)) {
     this.isValid.mobilenumber = false;
     isValid = false;
   }
