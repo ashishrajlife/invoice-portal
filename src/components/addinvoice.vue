@@ -184,7 +184,7 @@ export default {
     },
 
     NextPage() {
-      // Reset all validations
+      // Reset all validations to remove borders
       this.isValid = {
         companyName: true,
         companymobilenumber: true,
@@ -200,7 +200,7 @@ export default {
       };
 
       let isValid = true;
-
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (this.companyName === '') {
         this.isValid.companyName = false;
         isValid = false;
@@ -209,7 +209,7 @@ export default {
         this.isValid.companymobilenumber = false;
         isValid = false;
       }
-      if (this.companyemail === '') {
+      if (!this.companyemail || !emailRegex.test(this.companyemail)) {
         this.isValid.companyemail = false;
         isValid = false;
       }
