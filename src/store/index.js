@@ -4,7 +4,7 @@ import axios from 'axios';
 export default createStore({
   state: {
     authToken: localStorage.getItem('authToken') || null, // Check localStorage for authToken
-    invoiceData: {},
+    invoiceData: {},  // object can be used also
     transactionData: []
   },
   mutations: {
