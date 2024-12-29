@@ -18,7 +18,7 @@
     <v-row justify="space-between" align="center" class="mb-4">
 
       <v-col cols="6">
-        <h2 class="text-h6 company-name-style">{{ invoiceData.companyName }}</h2>
+        <h2 class="text-h6 company-name-style">{{ invoiceData.companyname }}</h2>
       </v-col>
 
       <v-col cols="6" md="6" class="text-right">
@@ -56,7 +56,7 @@
         <div>Name: <strong>{{ invoiceData.name }}</strong></div>
         <div>Mobile: <strong>{{ invoiceData.mobilenumber }}</strong></div>
         <div>Email: <strong>{{ invoiceData.email }}</strong></div>
-        <div>Address: <strong>{{ invoiceData.address }}</strong></div>
+        <div>Address: <strong>{{ invoiceData.address ? invoiceData.address : '---' }}</strong></div>
       </v-col>
       <v-col cols="12" md="6" class="text-right">
        

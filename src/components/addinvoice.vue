@@ -15,8 +15,8 @@
         </v-col>
         <v-col cols="8">
           <span class="text-page">Company Name</span>
-          <v-text-field label="Enter Name" v-model="companyName" class="input-custom-form" :class="{'error-border': !isValid.companyName}" />
-          <div v-if="!isValid.companyName" class="error-message">Company Name is required.</div>
+          <v-text-field label="Enter Name" v-model="companyname" class="input-custom-form" :class="{'error-border': !isValid.companyname}" />
+          <div v-if="!isValid.companyname" class="error-message">Company Name is required.</div>
         </v-col>
       </v-row>
 
@@ -56,7 +56,7 @@
 
       <v-col cols="4">
     <span class="text-page"> Date </span>
-    <input type="date" v-model="paymentDate" class="custom-date-input" :class="{'error-border': !isValid.paymentDate}" />
+    <input type="datetime-local" v-model="paymentDate" class="custom-date-input" :class="{'error-border': !isValid.paymentDate}" />
     <div v-if="!isValid.paymentDate" class="error-message">Date is required.</div>
   </v-col>
     </v-row>
@@ -107,8 +107,7 @@
     <v-row>
       <v-col cols="12">
         <span class="text-page"> Address </span>
-        <v-text-field label="Address" v-model="address" outlined :class="{'error-border': !isValid.address}" />
-        <div v-if="!isValid.address" class="error-message">Address is required.</div>
+        <v-text-field label="Address" v-model="address" outlined/>
       </v-col>
     </v-row>
 
@@ -135,7 +134,7 @@ export default {
     return {
       dialog: false,
       paymentDate: null,  
-      companyName: '',
+      companyname: '',
       companymobilenumber: '',
       mobilenumber: '',
       companyemail: '',
@@ -148,7 +147,7 @@ export default {
       state: '',
       address: '',
       isValid: {
-        companyName: true,
+        companyname: true,
         companymobilenumber: true,
         companyemail: true,
         gstnumber: true,
@@ -158,13 +157,12 @@ export default {
         mobilenumber: true,
         email: true,
         pincode: true,
-        address: true,
       }
     };
   },
   mounted(){
   const savedData = JSON.parse(localStorage.getItem('invoiceData')) || {};
-  this.companyName = savedData.companyName || '';
+  this.companyname = savedData.companyname || '';
   this.companymobilenumber = savedData.companymobilenumber || '';
   this.companyemail = savedData.companyemail || '';
   this.gstnumber = savedData.gstnumber || '';
@@ -186,7 +184,7 @@ export default {
     NextPage() {
       // Reset all validations to remove borders
       this.isValid = {
-        companyName: true,
+        companyname: true,
         companymobilenumber: true,
         companyemail: true,
         gstnumber: true,
@@ -195,14 +193,14 @@ export default {
         name: true,
         mobilenumber: true,
         email: true,
-        pincode: true,
-        address: true,
       };
 
       let isValid = true;
+      
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (this.companyName === '') {
-        this.isValid.companyName = false;
+
+      if (this.companyname === '') {
+        this.isValid.companyname = false;
         isValid = false;
       }
       if (!/^\d{10}$/.test(this.companymobilenumber)) {
@@ -217,7 +215,7 @@ export default {
         this.isValid.gstnumber = false;
         isValid = false;
       }
-      if (!this.paymentDate) {
+      if (this.paymentDate === '') {
         this.isValid.paymentDate = false;
         isValid = false;
       }
@@ -225,19 +223,23 @@ export default {
         this.isValid.name = false;
         isValid = false;
       }
-      if (this.pincode === '') {
+      if (this.mobilenumber === '') {
+        this.isValid.mobilenumber = false;
+        isValid = false;
+      }
+      if(this.pincode === ''){
         this.isValid.pincode = false;
         isValid = false;
       }
-      if (this.address === '') {
-        this.isValid.address = false;
+      if (this.email === '' || !emailRegex.test(this.companyemail)) {
+        this.isValid.email = false;
         isValid = false;
       }
 
       // If all fields are valid checking
       if (isValid) {
         const invoiceData = {
-          companyName: this.companyName,
+          companyname: this.companyname,
           companymobilenumber: this.companymobilenumber,
           mobilenumber: this.mobilenumber,
           companyemail: this.companyemail,
@@ -249,7 +251,6 @@ export default {
           pincode: this.pincode,
           city: this.city,
           state: this.state,
-          address: this.address,
         };
         localStorage.setItem('invoiceData', JSON.stringify(invoiceData));
         this.$store.dispatch('addInvoiceData', invoiceData);
