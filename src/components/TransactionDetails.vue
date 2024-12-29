@@ -94,7 +94,7 @@ export default {
           product: "",
           rate: '',
           quantity: '',
-          discount: '',
+          discount: 0,
         },
       ],
     };
@@ -145,10 +145,6 @@ export default {
         }
         if (!item.quantity) {
           toast.error('Quantity cannot be empty!', { autoClose: 3500 });
-          return false;
-        }
-        if (!item.discount) {
-          toast.error('Discount cannot be empty!', { autoClose: 3500 });
           return false;
         }
       }
