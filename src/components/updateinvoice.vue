@@ -7,13 +7,13 @@
       <v-img src="../../src/assets/images/back.png" alt="back" @click="goback" style="height: 24px; cursor: pointer;" />
     </v-col>
     <v-col>
-      <span class="page-heading"> Add New Invoice </span>
+      <span class="page-heading"> Invoice </span>
     </v-col>
   </v-row>
 
     <div class="error-container">
       <v-img src="../../src/assets/images/image-error.jpg" alt="Error" class="error-image" />
-      <p class="error-text">OOPS: Devloper wasn't confirm about the functionality of this Button.</p>
+      <p class="error-text">OOPS</p>
      
     </div>
   </template>
