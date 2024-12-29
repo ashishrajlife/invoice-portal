@@ -24,7 +24,7 @@
         <v-col cols="4">
           <span class="text-page"> Mobile No. </span>
           <v-text-field label="Enter Mobile No" v-model="companymobilenumber" :class="{'error-border': !isValid.companymobilenumber}" />
-          <div v-if="!isValid.companymobilenumber" class="error-message">Mobile number should be 10 digits.</div>
+          <div v-if="!isValid.companymobilenumber" class="error-message">Please Enter a valid Mobile Number.</div>
         </v-col>
 
         <v-col cols="4">
@@ -73,7 +73,7 @@
       <v-col cols="4">
         <span class="text-page"> Mobile No </span>
         <v-text-field label="mobile number" v-model="mobilenumber" :class="{'error-border': !isValid.mobilenumber}"/>
-        <div v-if="!isValid.mobilenumber" class="error-message">Mobile number is required.</div>
+        <div v-if="!isValid.mobilenumber" class="error-message">Please Enter a Valid Mobile Number.</div>
       </v-col>
 
       <v-col cols="4">
