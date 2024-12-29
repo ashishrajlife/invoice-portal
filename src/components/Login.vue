@@ -51,13 +51,13 @@ export default {
     toast.info('May Take Upto 30 Sec For First Login In Every 24 hour / Backend Config Run', { autoClose: 35000 })
     try {
 
-      const response = await axios.get('https://project-data-cc03.onrender.com/users', {
+      const response = await axios.get('https://project-data-cc03.onrender.com/users', {   //API data fetching
         params: { email: this.email, password: this.password },
       });
 
       if (response.data.length > 0) {
         const userData = {
-          authToken: response.data[0].authToken,
+          authToken: response.data[0].authToken,   //authentication token;
         };
         this.$store.dispatch('login', userData);
         this.$router.push('/dashboard');
@@ -66,7 +66,7 @@ export default {
       }
     } catch (error) {
       console.error('Error during login:', error);
-      toast.error(error.message || 'Something went wrong! Please try again.', { autoClose: 3500 });
+      toast.error(error.message || 'Something went wrong! Please try again.', { autoClose: 3500 });  // handling error
     }
   },
 

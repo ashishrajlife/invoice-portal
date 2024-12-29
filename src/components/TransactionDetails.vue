@@ -17,6 +17,7 @@
     </v-col>
   </v-row>
 
+  <!----Data table for entries ------->
   <v-row>
     <v-col class="table-container">
       <v-simple-table class="transaction-table">

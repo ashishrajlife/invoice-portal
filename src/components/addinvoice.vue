@@ -180,83 +180,101 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-
     NextPage() {
-      // Reset all validations to remove borders
-      this.isValid = {
-        companyname: true,
-        companymobilenumber: true,
-        companyemail: true,
-        gstnumber: true,
-        companyaddress: true,
-        paymentDate: true,
-        name: true,
-        mobilenumber: true,
-        email: true,
-      };
+  // Reset all validations to remove borders
+  this.isValid = {
+    companyname: true,
+    companymobilenumber: true,
+    companyemail: true,
+    gstnumber: true,
+    companyaddress: true,
+    paymentDate: true,
+    name: true,
+    mobilenumber: true,
+    email: true,
+    pincode: true,
+  };
 
-      let isValid = true;
-      
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let isValid = true;
 
-      if (this.companyname === '') {
-        this.isValid.companyname = false;
-        isValid = false;
-      }
-      if (!/^\d{10}$/.test(this.companymobilenumber)) {
-        this.isValid.companymobilenumber = false;
-        isValid = false;
-      }
-      if (!this.companyemail || !emailRegex.test(this.companyemail)) {
-        this.isValid.companyemail = false;
-        isValid = false;
-      }
-      if (this.gstnumber === '') {
-        this.isValid.gstnumber = false;
-        isValid = false;
-      }
-      if (this.paymentDate === '') {
-        this.isValid.paymentDate = false;
-        isValid = false;
-      }
-      if (this.name === '') {
-        this.isValid.name = false;
-        isValid = false;
-      }
-      if (this.mobilenumber === '') {
-        this.isValid.mobilenumber = false;
-        isValid = false;
-      }
-      if(this.pincode === ''){
-        this.isValid.pincode = false;
-        isValid = false;
-      }
-      if (this.email === '' || !emailRegex.test(this.companyemail)) {
-        this.isValid.email = false;
-        isValid = false;
-      }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  //email validation regec
+  const noSpecialCharRegex = /^[a-zA-Z0-9\s]+$/; // special character regex
 
-      // If all fields are valid checking
-      if (isValid) {
-        const invoiceData = {
-          companyname: this.companyname,
-          companymobilenumber: this.companymobilenumber,
-          mobilenumber: this.mobilenumber,
-          companyemail: this.companyemail,
-          email: this.email,
-          gstnumber: this.gstnumber,
-          companyaddress: this.companyaddress,
-          paymentDate: this.paymentDate,
-          name: this.name,
-          pincode: this.pincode,
-          city: this.city,
-          state: this.state,
-        };
-        localStorage.setItem('invoiceData', JSON.stringify(invoiceData));
-        this.$store.dispatch('addInvoiceData', invoiceData);
-        this.$router.push({ name: 'transactiondetail' });
-      }
-    },
+  // Company Name Validation
+  if (this.companyname === '' || !noSpecialCharRegex.test(this.companyname)) {
+    this.isValid.companyname = false;
+    isValid = false;
+  }
+
+  // Company Mobile Number Validation
+  if (!/^\d{10}$/.test(this.companymobilenumber)|| !noSpecialCharRegex.test(this.name)) {
+    this.isValid.companymobilenumber = false;
+    isValid = false;
+  }
+
+  // Company Email Validation
+  if (!this.companyemail || !emailRegex.test(this.companyemail)) {
+    this.isValid.companyemail = false;
+    isValid = false;
+  }
+
+  // GST Number Validation
+  if (this.gstnumber === '') {
+    this.isValid.gstnumber = false;
+    isValid = false;
+  }
+
+  // Payment Date Validation
+  if (this.paymentDate === '') {
+    this.isValid.paymentDate = false;
+    isValid = false;
+  }
+
+  // Name Validation
+  if (this.name === '' || !noSpecialCharRegex.test(this.name)) {
+    this.isValid.name = false;
+    isValid = false;
+  }
+
+  // Mobile Number Validation
+  if (this.mobilenumber === '' || !noSpecialCharRegex.test(this.pincode)) {
+    this.isValid.mobilenumber = false;
+    isValid = false;
+  }
+
+  // Pincode Validation
+  if (this.pincode === '' || !noSpecialCharRegex.test(this.pincode)) {
+    this.isValid.pincode = false;
+    isValid = false;
+  }
+
+  // Email Validation
+  if (this.email === '' || !emailRegex.test(this.email)) {
+    this.isValid.email = false;
+    isValid = false;
+  }
+
+  // If all fields are valid
+  if (isValid) {
+    const invoiceData = {
+      companyname: this.companyname,
+      companymobilenumber: this.companymobilenumber,
+      mobilenumber: this.mobilenumber,
+      companyemail: this.companyemail,
+      email: this.email,
+      gstnumber: this.gstnumber,
+      companyaddress: this.companyaddress,
+      paymentDate: this.paymentDate,
+      name: this.name,
+      pincode: this.pincode,
+      city: this.city,
+      state: this.state,
+    };
+    localStorage.setItem('invoiceData', JSON.stringify(invoiceData));
+    this.$store.dispatch('addInvoiceData', invoiceData);
+    this.$router.push({ name: 'transactiondetail' });
+  }
+},
   }
 };
 </script>

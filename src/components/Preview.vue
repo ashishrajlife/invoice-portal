@@ -1,10 +1,7 @@
 <template>
   <AppDrawer />
 
-  <v-row
-    class="page-header"
-    style="display: flex; align-items: center; justify-content: flex-start;"
-  >
+  <v-row class="page-header" style="display: flex; align-items: center; justify-content: flex-start;" >
     <v-col cols="1">
       <v-img src="../../src/assets/images/back.png" alt="back" @click="goBack" style="height: 24px; cursor: pointer;" />
     </v-col>
@@ -13,6 +10,8 @@
     </v-col>
   </v-row>
 
+
+  <!----Company Details ----------->
 
   <div style="padding: 25px;">
     <v-row justify="space-between" align="center" class="mb-4">
@@ -39,6 +38,8 @@
     <div>#3456789</div>
   </v-col>
 </v-row>
+
+   <!----User details -->
 
     <v-row>
       <v-col>
@@ -216,7 +217,7 @@ color:#424242;
   background-color: #2F80ED; 
   color: white; 
   font-size: 16px;
-  margin-left: 20px; /* Slight margin between the buttons */
+  margin-left: 20px;
 }
 
 .back-button {

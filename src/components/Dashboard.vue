@@ -1,5 +1,8 @@
 <template>
   <v-app>
+
+    <!----Application left drawer ----->
+
     <v-navigation-drawer app>
       <v-img src="../assets/images/Cnlogo.png" style="width: 209px; height: 117px; gap: 0px; opacity: 0px;" />
       <v-list>
@@ -31,6 +34,8 @@
         </v-col>
       </v-row>
 
+      <!---Dashboard card ----->
+
       <v-row class="my-4">
         <v-col cols="12" md="4" class="align-center pa-0" @click="filterTableData('all')">
           <div class="summary-box summary-box-border-right" :class="{ 'selected-card': selectedCard === 'all' }">
@@ -53,6 +58,8 @@
           </div>
         </v-col>
       </v-row>
+
+      <!----Table to show records ------>
 
       <div v-if="filteredTableData.length > 0">
         <table class="custom-table">
@@ -105,10 +112,9 @@ export default {
       selectedCard: "all",
       tableData: [],
       filteredTableData: [],
-      datapresent:false
     };
   },
-  computed: {
+  computed: {       // Formatting
     totalRecords() {
       return this.tableData.length;
     },
@@ -120,7 +126,7 @@ export default {
     },
   },
   methods: {
-    async fetchData() {
+    async fetchData() {  //fetching data from API
       try {
         const response = await axios.get("https://project-data-cc03.onrender.com/invoices"); 
         const responseData = response.data;
@@ -148,11 +154,11 @@ export default {
       this.$store.dispatch("logout");
       this.$router.push("/");
     },
-    createInvoice() {
+    createInvoice() {   
       console.log("Create Invoice clicked");
-      this.$router.push({ name: "addinvoice" });
+      this.$router.push({ name: "addinvoice" });  // Routing to the addinvoice component
     },
-    setActiveSection(section) {
+    setActiveSection(section) {    // setting session in the Store(vuex)
       this.activeSection = section;
       this.filterTableData("all"); 
     },
@@ -172,7 +178,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchData();
+    this.fetchData();  // fetching data on mounting by method;
   },
 };
 </script>
