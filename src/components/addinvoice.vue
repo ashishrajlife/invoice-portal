@@ -219,10 +219,10 @@ export default {
   }
 
   // GST Number Validation
-  if (this.gstnumber === '' ||  !noSpecialCharRegex.test(this.gstnumber)) {
-    this.isValid.gstnumber = false;
-    isValid = false;
-  }
+  // if (this.gstnumber === '' ||  !noSpecialCharRegex.test(this.gstnumber)) {
+  //   this.isValid.gstnumber = false;
+  //   isValid = false;
+  // }
 
   // Payment Date Validation
   if (this.paymentDate === '') {
