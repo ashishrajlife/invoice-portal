@@ -219,7 +219,7 @@ export default {
   }
 
   // GST Number Validation
-  if (this.gstnumber === '' ||  !emailRegex.test(this.gstnumber)) {
+  if (this.gstnumber === '' ||  !noSpecialCharRegex.test(this.gstnumber)) {
     this.isValid.gstnumber = false;
     isValid = false;
   }
