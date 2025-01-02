@@ -2,7 +2,7 @@
   <v-container id="login-page" class="d-flex justify-center align-center" style="height: 100vh;">
     <v-card class="login-card pa-5" outlined>
       <v-card-title class="justify-center">
-        <v-img src="../assets/images/Cnlogo.png" alt="Company Logo" contain max-height="100" max-width="100" />
+        <!-- <v-img src="../assets/images/Cnlogo.png" alt="Company Logo" contain max-height="100" max-width="100" /> -->
       </v-card-title>
       <v-card-subtitle class="text-center mb-4">
         <h2>Authentication</h2>
